@@ -1,0 +1,20 @@
+!pip install pytesseract
+
+!sudo apt install tesseract-ocr
+
+try:
+ from PIL import Image
+except ImportError:
+ import Image
+import cv2
+import pytesseract
+
+!which tesseract /usr/bin/tesseract
+
+pytesseract.pytesseract.tesseract_cmd = (
+    r'/usr/bin/tesseract'
+)
+
+img_cv = cv2.imread(r'/content/TextRead.PNG')
+
+print(pytesseract.image_to_string(img_cv, lang='eng', config='-psm 1'))
